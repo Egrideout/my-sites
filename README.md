@@ -1,4 +1,4 @@
-# My Sites
+# Eric's Web Apps
 
 A small mobile-first dashboard for deployed websites created via GitHub-backed projects.
 
