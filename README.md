@@ -2,6 +2,12 @@
 
 A small mobile-first dashboard for deployed websites created via GitHub-backed projects.
 
+## Live site
+
+```text
+https://egrideout.github.io/my-sites/
+```
+
 ## Run locally
 
 ```sh
