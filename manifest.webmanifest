@@ -1,0 +1,9 @@
+{
+  "name": "My Sites",
+  "short_name": "My Sites",
+  "start_url": ".",
+  "display": "standalone",
+  "background_color": "#f6f7f4",
+  "theme_color": "#111827",
+  "icons": []
+}
