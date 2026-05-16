@@ -81,7 +81,11 @@ function loadLinks() {
   try {
     const stored = JSON.parse(localStorage.getItem(STORAGE_KEY));
     if (Array.isArray(stored) && stored.length) {
-      return mergeSeedLinks(stored);
+      const mergedLinks = mergeSeedLinks(stored);
+      if (mergedLinks.length !== stored.length) {
+        localStorage.setItem(STORAGE_KEY, JSON.stringify(mergedLinks));
+      }
+      return mergedLinks;
     }
   } catch {
     localStorage.removeItem(STORAGE_KEY);
