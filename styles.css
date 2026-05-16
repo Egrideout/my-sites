@@ -198,7 +198,6 @@ h1 {
 }
 
 .search,
-.utility-panel,
 .tabs {
   display: flex;
   align-items: center;
@@ -227,8 +226,6 @@ h1 {
 
 .primary-button,
 .icon-button,
-.utility-panel button,
-.file-button,
 .tabs button {
   display: inline-flex;
   align-items: center;
@@ -263,9 +260,7 @@ h1 {
 
 .primary-button:active,
 .icon-button:active,
-.tabs button:active,
-.utility-panel button:active,
-.file-button:active {
+.tabs button:active {
   transform: translateY(1px);
 }
 
@@ -455,30 +450,6 @@ h1 {
 .edit-button svg {
   width: 18px;
   height: 18px;
-}
-
-.utility-panel {
-  flex-wrap: wrap;
-  margin: 22px 0 max(24px, env(safe-area-inset-bottom));
-}
-
-.utility-panel button,
-.file-button {
-  min-height: 38px;
-  padding: 0 13px;
-  background: var(--surface-glass);
-  color: var(--muted);
-  border: 1px solid var(--line);
-  font-weight: 760;
-  backdrop-filter: blur(14px);
-}
-
-.file-button input {
-  position: absolute;
-  width: 1px;
-  height: 1px;
-  overflow: hidden;
-  opacity: 0;
 }
 
 dialog {

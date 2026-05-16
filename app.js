@@ -57,7 +57,6 @@ const linkDialog = document.querySelector("#linkDialog");
 const linkForm = document.querySelector("#linkForm");
 const dialogTitle = document.querySelector("#dialogTitle");
 const deleteButton = document.querySelector("#deleteButton");
-const importInput = document.querySelector("#importInput");
 
 document.querySelector("#dateLine").textContent = new Intl.DateTimeFormat(undefined, {
   weekday: "long",
@@ -71,9 +70,6 @@ render();
 searchInput.addEventListener("input", render);
 addLinkButton.addEventListener("click", () => openDialog());
 document.querySelector("#themeToggle").addEventListener("click", toggleTheme);
-document.querySelector("#exportButton").addEventListener("click", exportLinks);
-document.querySelector("#resetButton").addEventListener("click", resetLinks);
-importInput.addEventListener("change", importLinks);
 deleteButton.addEventListener("click", deleteCurrentLink);
 
 linkForm.addEventListener("submit", (event) => {
@@ -243,39 +239,6 @@ function initials(name) {
     .map((word) => word[0])
     .join("")
     .toUpperCase();
-}
-
-function exportLinks() {
-  const data = JSON.stringify(links, null, 2);
-  const blob = new Blob([data], { type: "application/json" });
-  const url = URL.createObjectURL(blob);
-  const anchor = document.createElement("a");
-  anchor.href = url;
-  anchor.download = `tool-hub-links-${new Date().toISOString().slice(0, 10)}.json`;
-  anchor.click();
-  URL.revokeObjectURL(url);
-}
-
-async function importLinks(event) {
-  const [file] = event.target.files;
-  if (!file) return;
-  const text = await file.text();
-  const imported = JSON.parse(text);
-  if (!Array.isArray(imported)) return;
-  links = imported
-    .filter((link) => link.name && link.url && link.category)
-    .map((link) => ({ id: link.id || createId(), ...link }));
-  activeCategory = "All";
-  persist();
-  render();
-  importInput.value = "";
-}
-
-function resetLinks() {
-  links = seedLinks.map((link) => ({ ...link, id: createId() }));
-  activeCategory = "All";
-  persist();
-  render();
 }
 
 function toggleTheme() {
