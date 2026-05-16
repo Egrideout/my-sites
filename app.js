@@ -37,6 +37,13 @@ const seedLinks = [
     category: "Local",
     note: "Coffee shops for working around St. Louis",
   },
+  {
+    id: createId(),
+    name: "Wardrobe AI",
+    url: "https://wardrobe-ai-six.vercel.app/",
+    category: "Tools",
+    note: "Private wardrobe inventory and clothing advisor",
+  },
 ];
 
 let links = loadLinks();
@@ -78,7 +85,7 @@ function loadLinks() {
   try {
     const stored = JSON.parse(localStorage.getItem(STORAGE_KEY));
     if (Array.isArray(stored) && stored.length) {
-      return stored;
+      return mergeSeedLinks(stored);
     }
   } catch {
     localStorage.removeItem(STORAGE_KEY);
@@ -88,6 +95,12 @@ function loadLinks() {
 
 function persist() {
   localStorage.setItem(STORAGE_KEY, JSON.stringify(links));
+}
+
+function mergeSeedLinks(storedLinks) {
+  const storedUrls = new Set(storedLinks.map((link) => normalizeUrl(link.url)));
+  const missingSeedLinks = seedLinks.filter((link) => !storedUrls.has(normalizeUrl(link.url)));
+  return [...storedLinks, ...missingSeedLinks];
 }
 
 function categories() {
