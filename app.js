@@ -1,5 +1,6 @@
 const STORAGE_KEY = "tool-hub-links-v2";
 const THEME_KEY = "tool-hub-theme";
+const REMOVED_SEED_URLS = new Set(["https://piano-app-theta.vercel.app/"].map(normalizeUrl));
 
 const seedLinks = [
   {
@@ -18,10 +19,10 @@ const seedLinks = [
   },
   {
     id: createId(),
-    name: "Piano App",
-    url: "https://piano-app-theta.vercel.app/",
+    name: "Jazz Piano",
+    url: "https://jazz-piano-app.vercel.app",
     category: "Music",
-    note: "Piano practice app",
+    note: "Jazz piano practice dashboard",
   },
   {
     id: createId(),
@@ -81,8 +82,9 @@ function loadLinks() {
   try {
     const stored = JSON.parse(localStorage.getItem(STORAGE_KEY));
     if (Array.isArray(stored) && stored.length) {
-      const mergedLinks = mergeSeedLinks(stored);
-      if (mergedLinks.length !== stored.length) {
+      const activeStoredLinks = stored.filter((link) => !REMOVED_SEED_URLS.has(normalizeUrl(link.url)));
+      const mergedLinks = mergeSeedLinks(activeStoredLinks);
+      if (mergedLinks.length !== stored.length || activeStoredLinks.length !== stored.length) {
         localStorage.setItem(STORAGE_KEY, JSON.stringify(mergedLinks));
       }
       return mergedLinks;
