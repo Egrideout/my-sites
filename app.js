@@ -26,6 +26,13 @@ const seedLinks = [
   },
   {
     id: createId(),
+    name: "Home Lifting Tracker",
+    url: "https://home-lifting-tracker.vercel.app",
+    category: "Health",
+    note: "Workout logging and weekly lifting review",
+  },
+  {
+    id: createId(),
     name: "Metronome",
     url: "https://egrideout.github.io/metronome/",
     category: "Music",
