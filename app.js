@@ -5,6 +5,13 @@ const REMOVED_SEED_URLS = new Set(["https://piano-app-theta.vercel.app/"].map(no
 const seedLinks = [
   {
     id: createId(),
+    name: "Command Center",
+    url: "https://eric-command-center-eric-rideouts-projects.vercel.app",
+    category: "Operations",
+    note: "Private Atlas dashboard and daily operating brief",
+  },
+  {
+    id: createId(),
     name: "Remodel Room",
     url: "https://remodel-room.web.app",
     category: "Home",
